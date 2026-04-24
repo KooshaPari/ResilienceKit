@@ -1,14 +1,21 @@
 version: 2
 updates:
   - package-ecosystem: "cargo"
-    directory: "/"
+    directory: "/rust"
     schedule:
       interval: "weekly"
       day: "monday"
     open-pull-requests-limit: 5
     labels: ["dependencies", "automated"]
   - package-ecosystem: "pip"
-    directory: "/"
+    directory: "/python/ci-cd-kit"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    labels: ["dependencies", "automated"]
+  - package-ecosystem: "pip"
+    directory: "/python/deploy-kit"
     schedule:
       interval: "weekly"
       day: "monday"
