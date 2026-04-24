@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Universal deployment toolkit with NVMS format for modern platforms, cloud, and pheno-sdk vendoring"
 readme = "README.md"
 requires-python = ">=3.10"
-license = {text = "MIT"}
+license = {text = "MIT OR Apache-2.0"}
 authors = [{name = "Koosha Pari", email = "kooshapari@gmail.com"}]
 keywords = ["deployment", "vercel", "fly", "cloud", "nvms", "vendoring", "pheno"]
 classifiers = [

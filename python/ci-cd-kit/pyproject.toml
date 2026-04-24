@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Reusable CI/CD workflow templates for Python projects - coverage, quality gates, security scanning, and more"
 requires-python = ">=3.11"
 readme = "README.md"
-license = { text = "MIT" }
+license = { text = "MIT OR Apache-2.0" }
 authors = [{ name = "ResilienceKit Team" }]
 keywords = ["ci-cd", "github-actions", "workflows", "coverage", "quality-gates"]
 classifiers = [
