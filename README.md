@@ -111,3 +111,7 @@ ResilienceKit/
 - **[cloud](../cloud)** — Multi-tenant service resilience
 - **[PhenoProc](../PhenoProc)** — Process-level resilience patterns
 - **[ValidationKit](../ValidationKit)** — Validation with resilience integration
+
+## License
+
+MIT — see [LICENSE](./LICENSE).
