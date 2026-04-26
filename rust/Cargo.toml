@@ -16,7 +16,3 @@ repository = "https://github.com/KooshaPari/ResilienceKit"
 tokio = { version = "1", features = ["full"] }
 async-trait = "0.1"
 thiserror = "1.0"
-# Migrated to phenoShared (was vendored locally; see kit-sdk-vendor-pattern-audit).
-# Downstream consumers should pull these via workspace.dependencies.
-phenotype-state-machine = { git = "https://github.com/KooshaPari/phenoShared.git", branch = "main" }
-phenotype-port-interfaces = { git = "https://github.com/KooshaPari/phenoShared.git", branch = "main" }
