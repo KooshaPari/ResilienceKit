@@ -1,8 +1,7 @@
 go 1.22
 
-use (
-    ./pheno-retry
-    ./pheno-circuitbreaker
-    ./pheno-bulkhead
-    ./pheno-timeout
-)
+// No Go modules implemented yet. Add `use ./<module>` entries as Go crates
+// (pheno-retry, pheno-circuitbreaker, pheno-bulkhead, pheno-timeout, etc.)
+// land on disk. The previous entries pointed to non-existent directories
+// and broke `go work sync` / `go build ./...`.
+use ()
