@@ -1,6 +1,6 @@
 # Work Audit — ResilienceKit
 
-**Index:** See `/Users/kooshapari/CodeProjects/Phenotype/repos/worklogs/README.md`
+**Index:** See `worklogs/README.md` in the Phenotype organization repository
 
 ## Purpose
 
@@ -54,4 +54,4 @@ Each entry should include:
 
 ---
 
-See parent worklog index at `/Users/kooshapari/CodeProjects/Phenotype/repos/worklogs/README.md` for aggregation tools and cross-project analysis.
+See parent worklog index at `worklogs/README.md` in the Phenotype organization repository for aggregation tools and cross-project analysis.
