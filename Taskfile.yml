@@ -7,10 +7,10 @@ vars:
       if [ -f rust/Cargo.toml ]; then
         langs="$langs rust"
       fi
-      if find python -mindepth 2 -maxdepth 2 -name pyproject.toml -print -quit | grep -q .; then
+      if [ -d python ] && find python -mindepth 2 -maxdepth 2 -name pyproject.toml -print -quit | grep -q .; then
         langs="$langs python"
       fi
-      if find go -name '*.go' -print -quit | grep -q .; then
+      if [ -d go ] && find go -name '*.go' -print -quit | grep -q .; then
         langs="$langs go"
       fi
       printf "%s" "${langs# }"
