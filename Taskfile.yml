@@ -7,7 +7,7 @@ vars:
       if [ -f rust/Cargo.toml ]; then
         langs="$langs rust"
       fi
-      if [ -d python ] && find python -mindepth 2 -maxdepth 2 -name pyproject.toml -print -quit | grep -q .; then
+      if { [ -d python ] && find python -mindepth 2 -maxdepth 2 -name pyproject.toml -print -quit | grep -q .; } || [ -d tests ]; then
         langs="$langs python"
       fi
       if [ -d go ] && find go -name '*.go' -print -quit | grep -q .; then
@@ -76,6 +76,9 @@ tasks:
               (cd rust && cargo test --workspace)
               ;;
             python)
+              if [ -d tests ]; then
+                uvx pytest tests
+              fi
               for pyproject in python/*/pyproject.toml; do
                 [ -f "$pyproject" ] || continue
                 dir=$(dirname "$pyproject")
@@ -106,6 +109,9 @@ tasks:
               (cd rust && cargo clippy --workspace --all-targets --all-features -- -D warnings)
               ;;
             python)
+              if [ -d tests ]; then
+                uvx ruff check tests
+              fi
               for pyproject in python/*/pyproject.toml; do
                 [ -f "$pyproject" ] || continue
                 dir=$(dirname "$pyproject")
