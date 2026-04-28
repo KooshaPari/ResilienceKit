@@ -143,6 +143,7 @@ tasks:
             python)
               find python -type d \( -name .venv -o -name build -o -name dist -o -name .pytest_cache -o -name .ruff_cache -o -name .mypy_cache -o -name __pycache__ -o -name .eggs \) -prune -exec rm -rf {} +
               find python -type d -name '*.egg-info' -prune -exec rm -rf {} +
+              find tests -type d \( -name .pytest_cache -o -name .ruff_cache -o -name .mypy_cache -o -name __pycache__ \) -prune -exec rm -rf {} +
               ;;
             go)
               (cd go && go clean -cache -testcache)
