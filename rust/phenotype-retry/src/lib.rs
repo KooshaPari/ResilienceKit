@@ -379,9 +379,7 @@ mod tests {
         let result: Result<String, RetryError<std::io::Error>> = retry_with_context(
             |ctx| {
                 attempts.push(ctx.attempt);
-                async move {
-                    Err::<String, std::io::Error>(std::io::Error::other("fail"))
-                }
+                async move { Err::<String, std::io::Error>(std::io::Error::other("fail")) }
             },
             &policy,
         )
