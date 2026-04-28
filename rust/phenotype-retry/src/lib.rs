@@ -62,7 +62,7 @@ impl BackoffStrategy {
             Self::Fixed { delay } => *delay,
             Self::Linear { base } => *base * attempt,
             Self::Exponential { base, max } => {
-                let exp = attempt.saturating_sub(1) as u32;
+                let exp = attempt.saturating_sub(1);
                 (*base * 2_u32.saturating_pow(exp)).min(*max)
             }
             Self::Custom { func } => func(attempt),
@@ -261,10 +261,7 @@ mod tests {
                 async move {
                     let current = count.fetch_add(1, Ordering::SeqCst);
                     if current < 2 {
-                        Err::<String, std::io::Error>(std::io::Error::new(
-                            std::io::ErrorKind::Other,
-                            "fail",
-                        ))
+                        Err::<String, std::io::Error>(std::io::Error::other("fail"))
                     } else {
                         Ok("success".to_string())
                     }
@@ -292,10 +289,7 @@ mod tests {
                 let count = counter_clone.clone();
                 async move {
                     count.fetch_add(1, Ordering::SeqCst);
-                    Err::<String, std::io::Error>(std::io::Error::new(
-                        std::io::ErrorKind::Other,
-                        "always fails",
-                    ))
+                    Err::<String, std::io::Error>(std::io::Error::other("always fails"))
                 }
             },
             &policy,
@@ -386,10 +380,7 @@ mod tests {
             |ctx| {
                 attempts.push(ctx.attempt);
                 async move {
-                    Err::<String, std::io::Error>(std::io::Error::new(
-                        std::io::ErrorKind::Other,
-                        "fail",
-                    ))
+                    Err::<String, std::io::Error>(std::io::Error::other("fail"))
                 }
             },
             &policy,
