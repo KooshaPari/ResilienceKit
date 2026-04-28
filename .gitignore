@@ -1,3 +1,13 @@
 # Worktree directories (org policy)
 .worktrees/
 .claude/worktrees/
+
+# Python caches and local build artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+build/
+dist/
+*.egg-info/
