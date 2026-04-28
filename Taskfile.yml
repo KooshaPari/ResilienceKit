@@ -1,0 +1,126 @@
+version: "3"
+
+vars:
+  REPO_LANG:
+    sh: |
+      if [ -f rust/Cargo.toml ]; then
+        printf "rust"
+      elif [ -f go/go.mod ] || [ -f go.mod ]; then
+        printf "go"
+      elif [ -f pyproject.toml ] || [ -f python/pyproject.toml ]; then
+        printf "python"
+      else
+        printf "unknown"
+      fi
+
+tasks:
+  default:
+    cmds:
+      - task: build
+
+  detect:
+    desc: Detect the primary language used by this repository
+    cmds:
+      - echo "{{.REPO_LANG}}"
+
+  build:
+    desc: Build the detected language workspace
+    cmds:
+      - |
+        case "{{.REPO_LANG}}" in
+          rust)
+            cd rust && cargo build --workspace
+            ;;
+          go)
+            cd go && go build ./...
+            ;;
+          python)
+            if [ -f pyproject.toml ]; then
+              python -m build
+            elif [ -f python/pyproject.toml ]; then
+              cd python && python -m build
+            else
+              echo "No Python build manifest found" >&2
+              exit 1
+            fi
+            ;;
+          *)
+            echo "No supported language manifest found" >&2
+            exit 1
+            ;;
+        esac
+
+  test:
+    desc: Run the detected language test suite
+    cmds:
+      - |
+        case "{{.REPO_LANG}}" in
+          rust)
+            cd rust && cargo test --workspace
+            ;;
+          go)
+            cd go && go test ./...
+            ;;
+          python)
+            if [ -f pyproject.toml ]; then
+              pytest
+            elif [ -f python/pyproject.toml ]; then
+              cd python && pytest
+            else
+              echo "No Python test manifest found" >&2
+              exit 1
+            fi
+            ;;
+          *)
+            echo "No supported language manifest found" >&2
+            exit 1
+            ;;
+        esac
+
+  lint:
+    desc: Run the detected language linter
+    cmds:
+      - |
+        case "{{.REPO_LANG}}" in
+          rust)
+            cd rust && cargo clippy --workspace --all-targets --all-features -- -D warnings
+            ;;
+          go)
+            cd go && go vet ./...
+            ;;
+          python)
+            if [ -f pyproject.toml ]; then
+              ruff check .
+            elif [ -f python/pyproject.toml ]; then
+              cd python && ruff check .
+            else
+              echo "No Python lint manifest found" >&2
+              exit 1
+            fi
+            ;;
+          *)
+            echo "No supported language manifest found" >&2
+            exit 1
+            ;;
+        esac
+
+  clean:
+    desc: Clean build artifacts for the detected language
+    cmds:
+      - |
+        case "{{.REPO_LANG}}" in
+          rust)
+            cd rust && cargo clean --workspace
+            ;;
+          go)
+            cd go && go clean -cache -testcache
+            ;;
+          python)
+            echo "No safe clean target configured for Python" >&2
+            exit 1
+            ;;
+          *)
+            echo "No supported language manifest found" >&2
+            exit 1
+            ;;
+        esac

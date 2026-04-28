@@ -184,6 +184,7 @@ mod tests {
     #[tokio::test]
     async fn test_rate_limiter() {
         let limiter = AsyncRateLimiter::new(10);
-        limiter.acquire().await;
+        let result = limiter.acquire().await;
+        assert!(result.is_ok());
     }
 }
