@@ -126,9 +126,13 @@ tasks:
               for module in {{.GO_MODULES}}; do
                 (cd "$module" && go vet ./...)
                 if command -v gofumpt >/dev/null 2>&1; then
-                  (cd "$module" && gofumpt -w . && git diff --exit-code -- .)
+                  unformatted=$(cd "$module" && gofumpt -l .)
                 else
-                  (cd "$module" && gofmt -w . && git diff --exit-code -- .)
+                  unformatted=$(cd "$module" && gofmt -l .)
+                fi
+                if [ -n "$unformatted" ]; then
+                  echo "$unformatted"
+                  exit 1
                 fi
               done
               ;;
