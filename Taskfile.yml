@@ -51,7 +51,7 @@ tasks:
               for pyproject in python/*/pyproject.toml; do
                 [ -f "$pyproject" ] || continue
                 dir=$(dirname "$pyproject")
-                (cd "$dir" && python -m build)
+                (cd "$dir" && uv build)
               done
               ;;
             go)
@@ -80,7 +80,7 @@ tasks:
                 [ -f "$pyproject" ] || continue
                 dir=$(dirname "$pyproject")
                 if find "$dir" -maxdepth 2 -type f \( -name 'test_*.py' -o -name '*_test.py' \) -print -quit | grep -q .; then
-                  (cd "$dir" && pytest)
+                  (cd "$dir" && uv run pytest)
                 fi
               done
               ;;
@@ -109,7 +109,7 @@ tasks:
               for pyproject in python/*/pyproject.toml; do
                 [ -f "$pyproject" ] || continue
                 dir=$(dirname "$pyproject")
-                (cd "$dir" && ruff check .)
+                (cd "$dir" && uvx ruff check .)
               done
               ;;
             go)
@@ -134,7 +134,7 @@ tasks:
               (cd rust && cargo clean --workspace)
               ;;
             python)
-              find python -type d \( -name build -o -name dist -o -name .pytest_cache -o -name .ruff_cache -o -name .mypy_cache -o -name __pycache__ -o -name .eggs \) -prune -exec rm -rf {} +
+              find python -type d \( -name .venv -o -name build -o -name dist -o -name .pytest_cache -o -name .ruff_cache -o -name .mypy_cache -o -name __pycache__ -o -name .eggs \) -prune -exec rm -rf {} +
               find python -type d -name '*.egg-info' -prune -exec rm -rf {} +
               ;;
             go)
