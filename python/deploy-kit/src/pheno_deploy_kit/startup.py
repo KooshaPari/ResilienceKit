@@ -32,11 +32,8 @@ def should_skip_vendor_check() -> bool:
 
     # Skip in development mode unless forced
     is_production = os.environ.get("PRODUCTION", "").lower() in ("1", "true", "yes")
-    if not is_production:
-        # In dev mode, skip unless explicitly requested
-        return True
-
-    return False
+    # In dev mode, skip unless explicitly requested.
+    return not is_production
 
 
 def check_vendor_on_startup(

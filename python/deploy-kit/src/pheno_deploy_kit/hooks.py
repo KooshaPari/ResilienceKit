@@ -193,16 +193,15 @@ def pre_push_check(quiet: bool = False, auto_stage: bool = True) -> int:
     else:
         # Requirements didn't change, but check if vendoring exists
         vendor_dir = project_root / "pheno_vendor"
-        if not vendor_dir.exists():
-            if not quiet:
-                print(
-                    "[pre-push] pheno_vendor directory not found, may need initial setup",
-                    file=sys.stderr,
-                )
-                print(
-                    "[pre-push] Run 'pheno-vendor setup' to initialize vendoring",
-                    file=sys.stderr,
-                )
+        if not vendor_dir.exists() and not quiet:
+            print(
+                "[pre-push] pheno_vendor directory not found, may need initial setup",
+                file=sys.stderr,
+            )
+            print(
+                "[pre-push] Run 'pheno-vendor setup' to initialize vendoring",
+                file=sys.stderr,
+            )
 
     if not quiet:
         print("[pre-push] Vendoring check passed", file=sys.stderr)

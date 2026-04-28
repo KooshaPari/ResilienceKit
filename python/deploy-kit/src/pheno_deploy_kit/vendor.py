@@ -271,11 +271,7 @@ __version__ = "1.0.0"
         if not source_pkg_path.exists():
             # Try src/ layout
             src_path = pkg_info.source_path / "src" / pkg_info.module_name
-            if src_path.exists():
-                source_pkg_path = src_path
-            else:
-                # Use the whole directory
-                source_pkg_path = pkg_info.source_path
+            source_pkg_path = src_path if src_path.exists() else pkg_info.source_path
 
         # Copy the package
         if source_pkg_path.is_dir():

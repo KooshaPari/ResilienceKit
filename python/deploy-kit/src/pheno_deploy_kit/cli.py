@@ -7,6 +7,11 @@ import sys
 from pathlib import Path
 
 import click
+from rich.console import Console
+from rich.panel import Panel
+from rich.progress import Progress, SpinnerColumn, TextColumn
+from rich.table import Table
+
 from pheno_deploy_kit.checks import check_freshness
 from pheno_deploy_kit.install_hooks import (
     install_pre_push_hook,
@@ -16,10 +21,6 @@ from pheno_deploy_kit.install_hooks import (
 from pheno_deploy_kit.startup import check_vendor_on_startup
 from pheno_deploy_kit.utils import BuildHookGenerator, PlatformDetector
 from pheno_deploy_kit.vendor import PhenoVendor
-from rich.console import Console
-from rich.panel import Panel
-from rich.progress import Progress, SpinnerColumn, TextColumn
-from rich.table import Table
 
 console = Console()
 
