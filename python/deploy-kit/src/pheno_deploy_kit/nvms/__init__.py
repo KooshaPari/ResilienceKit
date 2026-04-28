@@ -3,7 +3,6 @@ NVMSParser module for Node Version Manager Script parsing.
 """
 
 from pathlib import Path
-from typing import Dict, List, Optional
 
 
 class NVMSParser:
@@ -29,10 +28,9 @@ class NVMSParser:
             with open(self.nvms_file) as f:
                 for line in f:
                     line = line.strip()
-                    if line and not line.startswith("#"):
-                        if "=" in line:
-                            key, value = line.split("=", 1)
-                            versions[key.strip()] = value.strip()
+                    if line and not line.startswith("#") and "=" in line:
+                        key, value = line.split("=", 1)
+                        versions[key.strip()] = value.strip()
         except Exception:
             pass
 

@@ -23,8 +23,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from typing import Any, Awaitable, Callable
-
+from typing import Any
 
 # ============================================================================
 # Local Health Check Implementations (extracted from pheno.* imports)
@@ -188,10 +187,10 @@ TCPHealthCheck = PortHealthCheck
 # ============================================================================
 
 # Configuration
-from .config import DeployConfig, PackageDetector
+from .config import DeployConfig, PackageDetector  # noqa: E402
 
 # Deployment hooks
-from .hooks import (
+from .hooks import (  # noqa: E402
     DeploymentHook,
     HookRegistry,
     PostDeployHook,
@@ -199,20 +198,20 @@ from .hooks import (
 )
 
 # Local deployment management
-from .local import LocalProcessConfig, LocalServiceManager, ReadyProbe
+from .local import LocalProcessConfig, LocalServiceManager, ReadyProbe  # noqa: E402
 
 # NVMS (Node Version Manager Script)
-from .nvms import NVMSParser
+from .nvms import NVMSParser  # noqa: E402
 
 # Cloud platform clients
-from .platforms.fly import FlyClient
-from .platforms.vercel import VercelClient
+from .platforms.fly import FlyClient  # noqa: E402
+from .platforms.vercel import VercelClient  # noqa: E402
 
 # Startup utilities
-from .startup import StartupConfig, StartupManager
+from .startup import StartupConfig, StartupManager  # noqa: E402
 
 # Utilities
-from .utils import (
+from .utils import (  # noqa: E402
     BuildHookGenerator,
     DeploymentValidator,
     EnvironmentManager,
@@ -221,7 +220,7 @@ from .utils import (
 )
 
 # Vendoring utilities
-from .vendor import PackageInfo, PhenoVendor
+from .vendor import PackageInfo, PhenoVendor  # noqa: E402
 
 __version__ = "0.1.0"
 __kit_name__ = "deploy"
