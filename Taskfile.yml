@@ -138,6 +138,7 @@ tasks:
           case "$lang" in
             rust)
               (cd rust && cargo clean --workspace)
+              rm -rf rust/target
               ;;
             python)
               find python -type d \( -name .venv -o -name build -o -name dist -o -name .pytest_cache -o -name .ruff_cache -o -name .mypy_cache -o -name __pycache__ -o -name .eggs \) -prune -exec rm -rf {} +
@@ -148,3 +149,5 @@ tasks:
               ;;
           esac
         done
+        rm -rf .pytest_cache .ruff_cache
+        git clean -fdX tests
