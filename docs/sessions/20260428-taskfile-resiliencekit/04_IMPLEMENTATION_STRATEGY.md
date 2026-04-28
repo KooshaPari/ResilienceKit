@@ -1,6 +1,6 @@
 # Implementation Strategy
 
 - Use a single root `Taskfile.yml`.
-- Detect language from manifests with a simple shell probe.
+- Detect active workspaces from manifests and actual source files, not just marker files.
 - Dispatch to repository-native commands instead of inventing wrappers.
-- Prefer Rust workspace commands because the repo is Rust-first and the workspace lives under `rust/`.
+- Treat Rust and Python as active targets; skip Go because `go/` has no source files yet.
