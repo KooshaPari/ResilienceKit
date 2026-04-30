@@ -1,11 +1,5 @@
 # ResilienceKit
 
-[![Build](https://img.shields.io/github/actions/workflow/status/KooshaPari/ResilienceKit/ci.yml?branch=main&label=build)](https://github.com/KooshaPari/ResilienceKit/actions)
-[![Release](https://img.shields.io/github/v/release/KooshaPari/ResilienceKit?include_prereleases&sort=semver)](https://github.com/KooshaPari/ResilienceKit/releases)
-[![License](https://img.shields.io/github/license/KooshaPari/ResilienceKit)](LICENSE)
-[![Phenotype](https://img.shields.io/badge/Phenotype-org-blueviolet)](https://github.com/KooshaPari)
-
-
 Multi-language resilience and fault-tolerance toolkit for distributed systems. Provides production-grade retry policies, circuit breakers, bulkheads, timeouts, and chaos engineering capabilities across Rust, Go, and Python.
 
 ## Overview
