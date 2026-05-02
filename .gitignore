@@ -12,3 +12,5 @@ build/
 dist/
 *.egg-info/
 python/pheno-resilience/
+python/ci-cd-kit/
+python/pheno-deploy/
