@@ -112,8 +112,9 @@ impl JitteredInterval {
 
     pub async fn tick(&mut self) -> tokio::time::Instant {
         let jitter = if self.jitter_ms > 0 {
+            use rand::RngExt;
             let mut rng = rand::rngs::ThreadRng::default();
-            std::time::Duration::from_millis(rand::Rng::gen_range(&mut rng, 0..self.jitter_ms))
+            std::time::Duration::from_millis(rng.random_range(0..self.jitter_ms))
         } else {
             std::time::Duration::from_millis(0)
         };
