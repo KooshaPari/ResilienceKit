@@ -7,7 +7,6 @@ license.workspace = true
 authors.workspace = true
 
 [dependencies]
-backoff = { version = "0.4", features = ["futures", "tokio"] }
 async-trait = "0.1"
 tokio = { version = "1", features = ["time", "sync", "rt"] }
 thiserror = "2.0"
