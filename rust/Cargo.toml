@@ -16,6 +16,6 @@ repository = "https://github.com/KooshaPari/ResilienceKit"
 [workspace.dependencies]
 tokio = { version = "1", features = ["full"] }
 async-trait = "0.1"
-thiserror = "1.0"
+thiserror = "2.0"
 futures = "0.3"
 rand = "0.8"
